@@ -1,0 +1,144 @@
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 42px;
+    text-align: center;
+    margin: 2% 0% 3% 0%;
+    font-weight: 900;
+}
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+.displayTxtLarge {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    text-align: right;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.displayTxtSmall {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    text-align: right;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.button {
+    background-color: #e6e6e6;
+    border: 1px solid #b3b3b3;
+    border-radius: 10px;
+    transition: all ease 0.2s;
+    padding: 16% 10%;
+    margin: 2%;
+}
+.button:hover {
+    background-color: #FFF;
+    box-shadow: inset 0px 0px 8px rgba(0,0,0,0.6), inset 0px 0px 30px rgba(0,0,0,0.1);;
+    border: 1px solid #999999;
+}
+#calculator-container {
+    margin: 0% 40%;
+    }
+#calculator {
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "header"
+        "clear"
+        "btns";
+    border: 1px solid #b3b3b3;
+    padding: 6%;
+    background-color: #666666;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 8px rgba(0,0,0,1);
+}
+#displayCtn {
+    background-color: #FFF;
+    grid-area: header;
+    box-shadow: inset 0px 0px 4px rgba(0,0,0,1);
+    border: 3px solid #4d4d4d;
+    border-radius: 10px;
+    min-height: 100px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 33% 67%;
+    justify-content: end;
+    align-items: space-between;
+    padding: 2% 4% 0% 4%;
+}
+#clearDelete {
+    grid-area: clear;
+    display: flex;
+    flex-direction: row;
+ }
+#clear {
+    padding: 8% 0%;
+    margin: 1%;
+    width: 100%;
+}
+#delete {
+    padding: 8% 0%;
+    margin: 1%;
+    width: 100%;
+}
+#btnContainer {
+    grid-area: btns;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "nums nums operators"
+        "nums nums operators"
+        "nums nums operators"
+        "nums nums operators"
+        "nums nums equals";
+}
+#btnNumbers {
+    grid-area: nums;
+    display: grid;
+    grid-template-areas:
+        "leftSide middleSide";
+}
+
+#btnOperators {
+    grid-area: operators;
+}
+#leftCol {
+    grid-area: leftSide;
+    display: flex;
+    flex-direction: column;
+}
+#middleCol {
+    grid-area: middleSide;
+    display: flex;
+    flex-direction: column;
+}
+#rightCol {
+    display: flex;
+    flex-direction: column;
+}
+#equalsBtn {
+    grid-area: equals;
+    display: flex;
+    flex-direction: column;
+}

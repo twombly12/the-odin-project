@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+    </head>
+    <body id=mainContent>
+        <div class=buttonContainer>
+            <button id=newBook class=button>Add New Book</button>
+        </div>
+        <div id=popUpForm class=popup>
+            <div id=popUpContent>
+                <h2>New Book Entry</h2>
+                <input type="text" id="titleInput" class=popupEntry placeholder="Book Title" name="title" required>
+                <input type="text" id="authorInput" class=popupEntry placeholder="Author's Name" name="author" required>
+                <input type="text" id="pageNumber" class=popupEntry placeholder="Number of Pages" name="pages" required>
+                <h4>Has the book been read?</h3>
+                <div id=readButtons>
+                    <button id=bookRead class=button>Yes</button>
+                    <button id=notRead class=button>No</button>
+                </div>
+            </div>       
+            <div id=cancelSubmit>
+                <button id=closePopUp class=close>Cancel</button>
+                <button id=submitBook class=submit>Submit</button>
+            </div>
+        </div>
+        
+
+
+        <script src="books.js"></script>
+    </body>
+</html>

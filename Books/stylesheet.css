@@ -1,0 +1,109 @@
+.buttonContainer {
+    height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    border: 1px solid rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.1);
+    padding: 10px 32px;  
+    transition: ease 0.3s;
+    border-radius: 3px
+}
+.button:hover, #notRead:hover, #bookRead:hover  {
+    
+    background-color: rgba(0,0,0,0.1);
+}
+
+#popUpForm {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 25%;
+    left: 40%;
+    right: 40%;
+    background-color: #FFF;
+    min-height: 20vmax;
+    display: none;
+    border-radius: 6px;
+}
+
+#popUpContent {
+    padding: 2% 2% 0% 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.popupEntry {
+    margin: 3% 0%;
+    padding: 4%;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: inset 0px 0px 4px rgba(0,0,0,0.3);
+    border-radius: 3px
+}
+
+#readButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 10vmax;
+}
+#bookRead, #notRead {
+    background-color: #FFF;
+
+}
+
+.readStatus {
+    background-color: #8FBC8F !important;
+    box-shadow: inset 0px 0px 6px rgba(0,0,0,0.2);
+    color: #FFF;
+    font-weight: bold;
+}
+
+
+
+#cancelSubmit {
+    display: flex;
+    flex-direction: row;
+    margin-top: 16%;
+    min-width: 100%;
+    justify-content: space-evenly;
+}
+.close {
+    background-color: #E9967A;
+    color: #FFF;
+    transition: ease 0.3s;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 10px 32px;  
+    border-radius: 3px 0px 0px 3px;
+    width: 50%;
+}
+.close:hover {
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.4);
+}
+.submit {
+    background-color: #8FBC8F;
+    color: #FFF;
+    transition: ease 0.3s;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 10px 32px;  
+    border-radius: 0px 3px 3px 0px;
+    width: 50%;
+}
+.submit:hover {
+    box-shadow: inset 0px 0px 14px rgba(0,0,0,0.4);
+}
+
+.showDisplay {
+    display: flex !important;
+    box-shadow: 0px 0px 60px rgba(0,0,0,0.3);
+}
+.showDisplayOverlay {
+    background-color: rgba(0,0,0,0.4);
+}
+

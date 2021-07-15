@@ -1,0 +1,32 @@
+
+
+#squares-container {
+min-height: 98vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+#buttons {
+  margin-bottom: 1%;
+
+}
+
+#squares{
+display: grid;
+border: 2px solid purple;
+grid-gap: 2px;
+background-color: rgba(0,0,0,0.13);
+width: 600px;
+height: 600px;
+}
+
+.square-background {
+background-color: #FFF;
+}
+
+  
+
+  
+
