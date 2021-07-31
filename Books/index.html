@@ -2,26 +2,34 @@
 <html>
     <head>
         <link rel="stylesheet" href="stylesheet.css">
-    </head>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">    </head>
     <body id=mainContent>
         <div class=buttonContainer>
-            <button id=newBook class=button>Add New Book</button>
+            <button id=newBookButton class=button>Add New Book</button>
         </div>
-        <div id=popUpForm class=popup>
-            <div id=popUpContent>
-                <h2>New Book Entry</h2>
-                <input type="text" id="titleInput" class=popupEntry placeholder="Book Title" name="title" required>
-                <input type="text" id="authorInput" class=popupEntry placeholder="Author's Name" name="author" required>
-                <input type="text" id="pageNumber" class=popupEntry placeholder="Number of Pages" name="pages" required>
-                <h4>Has the book been read?</h3>
-                <div id=readButtons>
-                    <button id=bookRead class=button>Yes</button>
-                    <button id=notRead class=button>No</button>
+        <div id=popUpOverlayColour>
+            <div id=popUpForm class=popup>
+                <div id=popUpContent>
+                    <h2>New Book Entry</h2>
+                    <form id=formData>
+                        <input type="text" id="titleInput" class=popupEntry placeholder="Book Title" name="title" required>
+                        <input type="text" id="authorInput" class=popupEntry placeholder="Author's Name" name="author" required>
+                        <input type="number" id="pageNumber" class=popupEntry placeholder="Number of Pages" name="pages" required>
+                        <h4>Has the book been read?</h4>
+                        <label class="switch">
+                            <input type="checkbox" id="togBtn">
+                            <div class="slider round"></div>
+                        </label>
+                    </form>              
+                </div>       
+                <div id=cancelSubmit>
+                    <button id=closePopUp class=close>Cancel</button>
+                    <button id=submitBook class=submit>Submit</button>
                 </div>
-            </div>       
-            <div id=cancelSubmit>
-                <button id=closePopUp class=close>Cancel</button>
-                <button id=submitBook class=submit>Submit</button>
+            </div>
+        </div> 
+        <div id=bookContentList>
+            <div id=bookRowContent class=bookRow>
             </div>
         </div>
         

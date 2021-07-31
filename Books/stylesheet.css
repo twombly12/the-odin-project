@@ -1,8 +1,20 @@
 .buttonContainer {
-    height: 98vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 10vmax;
+    width: 100%;
+    position: fixed;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    background-color: #FFF;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+#newBookButton {
+    position: fixed;
+    top: 4vmax;
+    left: 50%;
+    margin-left: -10%;
+    width: 20%;
 }
 
 .button {
@@ -16,7 +28,11 @@
     
     background-color: rgba(0,0,0,0.1);
 }
-
+#popUpOverlayColour {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+}
 #popUpForm {
     position: fixed;
     display: flex;
@@ -24,21 +40,30 @@
     align-items: center;
     flex-direction: column;
     top: 25%;
-    left: 40%;
-    right: 40%;
+    left: 42%;
+    right: 42%;
     background-color: #FFF;
-    min-height: 20vmax;
+    min-width: 16%;
     display: none;
     border-radius: 6px;
 }
 
 #popUpContent {
-    padding: 2% 2% 0% 2%;
+    padding: 2% 0% 0% 0%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
+#formData {
+    padding: 2% 0% 0% 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .popupEntry {
     margin: 3% 0%;
     padding: 4%;
@@ -47,22 +72,19 @@
     border-radius: 3px
 }
 
-#readButtons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 10vmax;
-}
-#bookRead, #notRead {
-    background-color: #FFF;
-
+.showDisplay {
+    display: flex !important;
+    box-shadow: 0px 0px 60px rgba(0,0,0,0.3);
+    z-index: 1000;
 }
 
-.readStatus {
-    background-color: #8FBC8F !important;
-    box-shadow: inset 0px 0px 6px rgba(0,0,0,0.2);
-    color: #FFF;
-    font-weight: bold;
+.showDisplayOverlay {
+    background-color: rgba(0,0,0,0.4);
+    z-index: 999;
+    display: block !important;
+    position: fixed;
+    top: 10vmax;
+    left: 0;
 }
 
 
@@ -83,9 +105,7 @@
     border-radius: 3px 0px 0px 3px;
     width: 50%;
 }
-.close:hover {
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.4);
-}
+
 .submit {
     background-color: #8FBC8F;
     color: #FFF;
@@ -95,15 +115,173 @@
     border-radius: 0px 3px 3px 0px;
     width: 50%;
 }
-.submit:hover {
-    box-shadow: inset 0px 0px 14px rgba(0,0,0,0.4);
+.submit:hover, .close:hover {
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
 }
 
-.showDisplay {
-    display: flex !important;
-    box-shadow: 0px 0px 60px rgba(0,0,0,0.3);
-}
-.showDisplayOverlay {
-    background-color: rgba(0,0,0,0.4);
-}
 
+
+
+
+
+
+
+
+
+/*------ Slider ---------*/
+
+.switch {
+    position: relative;
+    width: 160px;
+    height: 34px;
+  }
+  
+  .switch input {display:none;}
+  
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    box-shadow: inset 0px 0px 4px rgba(0,0,0,0.4);
+    -webkit-transition: .4s;
+    transition: .4s;
+     border-radius: 20px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: rgba(0, 191, 255, 1);
+  }
+  
+  
+  input:checked + .slider:before {
+    transform: translateX(126px);
+  }
+  
+  
+  .slider:after
+  {
+   content:'Not Read';
+   color: #FFF;
+   position: absolute;
+   transform: translate(-50%,-50%);
+   top: 50%;
+   left: 50%;
+   font-weight: bold;
+   font-size: 12px;
+   font-family: Verdana, sans-serif;
+  }
+  
+  input:checked + .slider:after
+  {  
+    content:'Read';
+    color: #FFF;
+  }
+  
+  /*--------- END --------*/
+
+
+
+
+
+
+  /*--------- Books --------*/
+#bookContentList {
+    margin-top: 14vmax;
+}
+  .bookRow {
+    display: grid;
+    grid-template-columns: 18% 18% 18% 18% 18%;
+    grid-template-rows: auto;
+    grid-gap: 2%;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+    margin: 4% 4%;
+  }
+  .bookCard {
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    padding: 3% 8%;
+    min-height: 20vmax;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+  }
+  .bookTitle{
+    font-size: 24px;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1;
+  }
+  .bookAuthor{
+    margin: 0px;
+    padding: 0px;
+    line-height: 1;
+  }
+  .bookPages{
+    margin: 0px;
+    padding: 0px;
+    line-height: 1;
+  }
+  .read-btn {
+    display: inline-block;
+    padding: 6px 40px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.3);
+    background-size: 210%;
+    transition: 0.3s ease;
+    margin-bottom: -10%;
+  }
+  .read-btn:hover {
+    background-position: left;
+    box-shadow: inset 4px 0px 5px rgba(0,0,0,0.3);
+  }
+  .readYes {
+    background: linear-gradient(to left, #8FBC8F 50%, #E9967A 50%) right;
+    background-size: 210% !important;
+  }
+  .readYes:before {
+    content: "Yes" !important;
+  }
+  .readNo {
+    background: linear-gradient(to left, #E9967A 50%, #8FBC8F 50%) right;
+    background-size: 210% !important;
+  }
+  .readNo:before {
+    content: "No" !important;
+  }
+  .delete-btn {
+    border: none;
+    background-color: rgba(0,0,0,0);
+    position: absolute;
+    left: 85%;
+  }
+  .delete-btn:before {
+    font-family: 'Font Awesome 5 Free';
+    content:"\f2ed" !important;
+    color: rgba(0,0,0,0.4);
+    font-size: 18px;
+  }
+  .delete-btn:hover:before {
+    color:#E9967A;
+  }

@@ -1,3 +1,6 @@
+
+/*--------- Book Array ----------*/
+
 /* Library Array */
 let myLibrary = [];
 
@@ -8,9 +11,9 @@ function Books(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function() {
-        return title + " by " +  author + ", " +  pages + ", " +  read;
-    }
+    // this.info = function() {
+    //     return title + " by " +  author + ", " +  pages + ", " +  read;
+    // }
 }
 
 /*Add Book to Array */
@@ -28,53 +31,224 @@ function displayBooks () {
     };
     console.table(titles);
     titles = [];
+    console.log()
+}
+
+/*---------- End Book Array ----------*/
+
+
+
+
+
+
+
+/*---------- Local Storage ----------*/
+
+function addToLocalStorage() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+function retrieveLocalStorage() {
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+}
+
+function clearLocalStorage() {
+    localStorage.clear()
+}
+
+function updateLocalStorage() {
+    clearLocalStorage();
+    addToLocalStorage();
+}
+
+/*---------- End Local Storage----------*/
+
+
+
+
+
+
+
+
+
+/*--------- Pop up Form ----------*/
+
+/*PopUp Form Appear & Disappear */
+const addBookClick = document.getElementById("newBookButton");
+const popupContainer = document.getElementById("popUpForm");
+const contentOverlay = document.getElementById("popUpOverlayColour");
+const closePopUpContainer = document.getElementById("closePopUp");
+
+function openPopUp() {
+    popupContainer.classList.add("showDisplay");
+    contentOverlay.classList.add("showDisplayOverlay");
+}; 
+
+addBookClick.addEventListener('click', openPopUp);
+
+function closePopUp() {
+    popupContainer.classList.remove("showDisplay");
+    contentOverlay.classList.remove("showDisplayOverlay");
+    form.reset();
+};
+
+closePopUpContainer.addEventListener('click', closePopUp);
+
+/*--------- End Pop up Form ----------*/
+
+
+
+
+
+
+
+/*--------- Submit Form Data ----------*/
+
+
+/* Book Read or Not */
+const readCheckBox = document.getElementById('togBtn');
+let readOrNot = "";
+
+function bookReadOrNot() {
+    if(readCheckBox.checked) {
+        readOrNot = "readYes";
+        return "readYes";
+    } else {
+        readOrNot = "readNo";
+        return "readNo";
+    }
+};
+
+/* Form Data to Array on click 'Submit'*/
+const clickSubmit = document.getElementById('submitBook');
+const form = document.getElementById('formData');
+    
+
+clickSubmit.addEventListener('click', event => {
+    const formTitle = document.getElementById('titleInput').value;
+    const formAuthor = document.getElementById('authorInput').value;
+    const formPages = document.getElementById('pageNumber').value;
+    bookReadOrNot();
+    addBookToLibrary(formTitle, formAuthor, formPages, readOrNot);
+    let newEntry = myLibrary.length - 1;
+    addBookCard(newEntry)
+    updateLocalStorage()
+    closePopUp();  
+});
+
+/*--------- End Submit Form Data ----------*/
+
+
+
+
+
+
+
+/*--------- Add Book Cards ----------*/
+
+const booksBar = document.getElementById('bookRowContent');
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 
+function addBookCard(bookNumber) {
+
+    const newBookCard = document.createElement('div');
+    newBookCard.classList.add('bookCard');
+    newBookCard.setAttribute('id', `bookCard${bookNumber}`);
+    document.getElementById('bookRowContent').appendChild(newBookCard);
+ 
+    const htmlBook = `
+        <h3 class="bookTitle">${capitalizeFirstLetter(myLibrary[bookNumber].title)}</h3>
+        <p class="bookAuthor">${capitalizeFirstLetter(myLibrary[bookNumber].author)}</p>
+        <p class="bookPages">${myLibrary[bookNumber].pages} Pages</p>
+        <button id="read${bookNumber}" class="read-btn ${myLibrary[bookNumber].read}"></button>
+        <p><button id="delete${bookNumber}" class="delete-btn"></button></p>
+        `;
+
+    document.getElementById(`bookCard${bookNumber}`).insertAdjacentHTML("afterbegin", htmlBook);
+}
+
+/*--------- End Add Book Cards ----------*/
 
 
 
-/* Placeholder Books */
-addBookToLibrary("Book1", "Author1", 10, "No");
-addBookToLibrary("Book2", "Author2", 20, "Yes");
-displayBooks();
+
+/*---------- Change Read Status or Delete Book ----------*/
+
+booksBar.addEventListener('click', (event) => {
+    const isButton = event.target.nodeName === 'BUTTON';
+    let readNumber = event.target.id.charAt(4);
+    if (!isButton) {
+      return;
+    } 
+    if(event.target.classList.contains('readNo')) {
+        event.target.classList.remove('readNo');
+        event.target.classList.add('readYes');
+        myLibrary[readNumber].read = "readYes";
+        updateLocalStorage()
+        return;
+    } 
+    if(event.target.classList.contains('readYes')) {
+        event.target.classList.remove('readYes');
+        event.target.classList.add('readNo');
+        myLibrary[readNumber].read = "readNo";
+        updateLocalStorage()
+        return;
+    }
+    /* Delete Book Card */
+    if(event.target.classList.contains('delete-btn')) {
+        let deleteNumber = event.target.id.charAt(6);
+        myLibrary.splice(deleteNumber, 1);
+        rePopulateBooks();
+        updateLocalStorage()
+    }
+  })
+
+/*---------- End Change Read Status  ----------*/
 
 
 
-/*PopUp Form Appear & Disappear */
-const addBookClick = document.getElementById("newBook");
-const popupContainer = document.getElementById("popUpForm");
-const contentOverlay = document.getElementById("mainContent");
-const closePopUpContainer = document.getElementById("closePopUp");
-
-addBookClick.addEventListener('click', event => {
-    popupContainer.classList.add("showDisplay");
-    contentOverlay.classList.add("showDisplayOverlay");
-}); 
-
-closePopUpContainer.addEventListener('click', event => {
-    popupContainer.classList.remove("showDisplay");
-    contentOverlay.classList.remove("showDisplayOverlay");
-    bookRead.classList.remove("readStatus");
-    bookNotRead.classList.remove("readStatus");
-});
 
 
+/*---------- Repopulate Book Cards After Delete ----------*/
 
-/*Pop Up Form Read Status */
-const bookRead = document.getElementById("bookRead");
-const bookNotRead = document.getElementById("notRead");
+function rePopulateBooks() {
 
-bookRead.addEventListener('click', event => {
-    bookRead.classList.add("readStatus");
-    bookNotRead.classList.remove("readStatus");
-});
+    for(i = 0; i <= myLibrary.length; i++) {
+        let victimCard = document.getElementById('bookCard' + i);
+        if(victimCard === null) {
+            continue
+        }
+        victimCard.remove();
+    }
+    for(i = 0; i < myLibrary.length; i++) {
+        addBookCard(i)
+    }
+}
 
-bookNotRead.addEventListener('click', event => {
-    bookNotRead.classList.add("readStatus");
-    bookRead.classList.remove("readStatus");
-});
+/*---------- End Repopulate Book Cards After Delete ----------*/
 
+
+
+
+
+
+
+
+
+/*---------- Load Local Storage ----------*/
+
+function loadLocalStorage() {
+    retrieveLocalStorage();
+    rePopulateBooks();
+}
+
+loadLocalStorage();
+
+/*---------- End Load Local Storage ----------*/
 
 
 
