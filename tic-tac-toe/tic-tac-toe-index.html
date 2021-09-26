@@ -6,10 +6,40 @@
     </head>
 
     <body>
-
-
-
-
+        <div id="game-space">
+            <div id='side-bar'>
+                <div class="side-bar-content">
+                    <h2>Who is Playing?</h2>
+                    <div class="selection-buttons">
+                        <button id=player1-submit onclick="getSecondPlayer.populate('Player 2')">Player vs. Player</button>
+                        <button id=player1-submit onclick="getSecondPlayer.populate('Computer')">Player vs. Computer</button>
+                    </div>
+                    <div>
+                        <button id='reset-button' onclick="resetGame.reset()">Reset</button>
+                    </div>
+                </div>
+            </div>
+            <div id='game-side'>
+                <div id="gameboard">
+                    <!-- <div class="play-field"></div>
+                    <div class="play-field"></div>
+                    <div class="play-field"></div>
+                    <div class="play-field"></div>
+                    <div class="play-field"></div>
+                    <div class="play-field"></div>
+                    <div class="play-field"></div>
+                    <div class="play-field"></div>
+                    <div class="play-field"></div> -->
+                </div>
+                <div id='announce-winner' class="hide-winner">
+                    <div class="winner-content">
+                        <div id='winner-container'></div>
+                        <button class="winner-container-button" onclick="resetGame.reset()">X</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <script src=tic-tac-toe.js></script>
     </body>
 
