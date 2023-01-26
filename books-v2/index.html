@@ -10,13 +10,30 @@
 </head>
 
 <body>
-    <div id="books">
-        <div class="headings">
-            <h2>Title</h2>
-            <h2>Author</h2>
-            <h2>Pages</h2>
-            <h2>Status</h2>
-            <span></span>
+    <div id="content">
+        <div id="book-form">
+            <form>
+                <label for="title">Title </label><br>
+                <input type="text" id="title" name="title" required><br>
+                <label for="author"> Author</label><br>
+                <input type="text" id="author" name="author" required><br>
+                <label for="pages"> Pages</label><br>
+                <input type="text" id="pages" name="pages" required><br>
+                <label for="status"> Status</label><br>
+                <input type="text" id="status" name="status" required><br>
+                <input type="submit" value="Submit" id="addBook">
+            </form>
+        </div>
+        <div id="books">
+            <div class="headings">
+                <h2>Title</h2>
+                <h2>Author</h2>
+                <h2>Pages</h2>
+                <h2>Status</h2>
+                <span></span>
+            </div>
+            <div id="bookCards">
+            </div>
         </div>
     </div>
     <script src="books.js"></script>
