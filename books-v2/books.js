@@ -7,6 +7,14 @@ function Book(title, author, pages, status) {
     this.author = author;
     this.pages = pages;
     this.status = status;
+    this.changeStatus = function readOrNot() {
+        if (this.status == 'yes') {
+            this.status = 'no'
+        } else if (this.status == 'no') {
+            this.status = 'yes'
+        }
+
+    }
 }
 
 // Add a book
@@ -20,10 +28,10 @@ function addBookToLibrary(title, author, pages, status) {
 // Test Values
 // Test Values
 
-addBookToLibrary("The Hobbit", "Tolkien", 452, "No")
-addBookToLibrary("The Hobbit", "Tolkien", 456, "No")
-addBookToLibrary("The Hobbit", "Tolkien", 654, "No")
-addBookToLibrary("The Hobbit", "Tolkien", 7852, "No")
+addBookToLibrary("The Hobbit", "Tolkien", 452, "no")
+addBookToLibrary("The Hobbit", "Tolkien", 456, "no")
+addBookToLibrary("The Hobbit", "Tolkien", 654, "yes")
+addBookToLibrary("The Hobbit", "Tolkien", 7852, "no")
 
 // Test Values
 // Test Values
@@ -47,12 +55,13 @@ function addBookCards(cardNumber) {
     const cardAuthor = document.createElement('p')
     cardAuthor.innerText = bookLibrary[cardNumber].author;
 
-    // Create Book PAges
+    // Create Book Pages
     const cardPages = document.createElement('p')
     cardPages.innerText = bookLibrary[cardNumber].pages;
 
     // Create Book Status
-    const cardStatus = document.createElement('p')
+    const cardStatus = document.createElement('button')
+    cardStatus.className = 'readBtn';
     cardStatus.innerText = bookLibrary[cardNumber].status;
 
     // Create Delete Button
@@ -76,6 +85,7 @@ function populateAllBooks() {
     bookLibrary.forEach((element, index) => {
         addBookCards(index)
     })
+    changeReadStatus()
     deleteBook()
 }
 
@@ -101,7 +111,7 @@ function addToLibrary() {
         const title = document.querySelector('#title').value;
         const author = document.querySelector('#author').value;
         const pages = document.querySelector('#pages').value;
-        const status = document.querySelector('#status').value;
+        const status = document.querySelector('#status').value.toLowerCase();
 
         if (title === '' || author === '' || pages === '' || status === '') {
             alert('Please fill out all fields')
@@ -117,13 +127,25 @@ function addToLibrary() {
     })
 }
 
+// Change Read Status
+function changeReadStatus() {
+    const readButton = document.querySelectorAll('.readBtn');
+    readButton.forEach(element => {
+        element.addEventListener('click', function(event) {
+            const card = this.closest('.bookCard').getAttribute('data-value')
+            bookLibrary[card].changeStatus()
+            clearBooksContainer()
+            populateAllBooks()
+        })
+    })
+}
+
 // Delete Book from Library
 function deleteBook() {
     const deleteBtn = document.querySelectorAll('.deleteBtn');
     deleteBtn.forEach(element => {
         element.addEventListener('click', function(event) {
             const card = this.closest('.bookCard').getAttribute('data-value')
-            console.log(card)
             bookLibrary.splice(card, 1)
             clearBooksContainer()
             populateAllBooks()
