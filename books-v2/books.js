@@ -2,12 +2,30 @@
 let bookLibrary = [];
 
 // Book Constructor
-function Book(title, author, pages, status) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-    this.changeStatus = function readOrNot() {
+// function Book(title, author, pages, status) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.status = status;
+//     this.changeStatus = function readOrNot() {
+//         if (this.status == 'yes') {
+//             this.status = 'no'
+//         } else if (this.status == 'no') {
+//             this.status = 'yes'
+//         }
+
+//     }
+// }
+
+class BookClass {
+    constructor(title, author, pages, status) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
+
+    changeStatus = function readOrNot() {
         if (this.status == 'yes') {
             this.status = 'no'
         } else if (this.status == 'no') {
@@ -19,7 +37,7 @@ function Book(title, author, pages, status) {
 
 // Add a book
 function addBookToLibrary(title, author, pages, status) {
-    const book = new Book(title, author, pages, status)
+    const book = new BookClass(title, author, pages, status)
     bookLibrary.push(book)
 }
 
